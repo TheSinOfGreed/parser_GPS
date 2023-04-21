@@ -3,7 +3,7 @@ import { daneWejsciowe } from "./daneWejsciowe";
 
 //funkcje
 import { sprawdz_poprawnosc_lini } from "./funkcjeSprawdzajace";
-import { sprawdz_system_satelitarny } from "./funkcjeAnalizujace";
+import { przeanalizuj_linie } from "./funkcjeAnalizujace";
 
 //zmienne
 let dane: string[] = daneWejsciowe.split('\n');
@@ -18,6 +18,6 @@ if(bledy.length !== 0){
     console.log("ERROR/S: " + bledy);
 }else{
     dane.forEach((linia, index) => {
-        sprawdz_system_satelitarny(linia, index);
+        przeanalizuj_linie(linia, index);
     });
 }
