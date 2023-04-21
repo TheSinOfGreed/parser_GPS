@@ -1,3 +1,5 @@
+import system_satelitarny from "./Interface/system_satelitarny.interface";
+
 export const daneWejsciowe: string = 
 `$GPRMC,183729,A,3907.356,N,12102.482,W,000.0,360.0,080301,015.5,E*6F
 $GPRMB,A,,,,,,,,,,,,V*71
@@ -14,7 +16,7 @@ $GPRTE,1,1,c,0*07
 $GPRMC,183731,A,3907.482,N,12102.436,W,000.0,360.0,080301,015.5,E*67
 $GPRMB,A,,,,,,,,,,,,V*71`;
 
-export const systemy_satelitarne: {skrot: string, pelna_nazwa: string}[] = [
+export const systemy_satelitarne: system_satelitarny[] = [
     {
         skrot: "GP",
         pelna_nazwa: "GPS"
