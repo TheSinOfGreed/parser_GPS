@@ -1,5 +1,6 @@
 //npm run start
-import { zestaw2 as daneWejsciowe } from "./daneWejsciowe";
+import { zestaw1 as daneWejsciowe } from "./daneWejsciowe";
+import { wynik } from "./funkcjeSekwencjeNaglowkow";
 
 //funkcje
 import { sprawdz_poprawnosc_lini } from "./funkcjeSprawdzajace";
@@ -20,4 +21,5 @@ if(bledy.length !== 0){
     dane.forEach((linia, index) => {
         przeanalizuj_linie(linia, index);
     });
+    console.log(wynik);
 }

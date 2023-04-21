@@ -1,3 +1,34 @@
+import { koncowy_wynik } from "./Interface/koncowy_wynik.interface";
+export const wynik: koncowy_wynik = {
+    informacje_systemowe: {
+        data: null,
+        czas: null,
+        odchylenie_magnetyczne: null,
+        wysokosc_genoid: null,
+        okreslenie_pozycji: null,
+        jakos: null,
+        suma: null
+    },
+    pozycja: {
+        szerokosc: null,
+        dlugosc:null,
+        predkosc: null,
+        kat_przemieszczania: null,
+        npm: null,
+        precyzja_hor: null,
+        precyzja_wert: null,
+        precyzja_ogolna: null,
+        liczba_sledz_sat: null,
+        numbery_satelitow: null,
+        status: null
+    },
+    satelity: {
+        czas_ust: null,
+        widoczne_sat: null,
+        satelity:  null,
+    }
+}
+
 export const GGA = (linia_old: string) => {
     const suma = linia_old.substring(linia_old.indexOf('*'));
     const linia = linia_old.substring(0, linia_old.indexOf('*') );
