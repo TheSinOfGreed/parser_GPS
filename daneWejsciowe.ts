@@ -13,3 +13,23 @@ $GPBOD,,T,,M,,*47
 $GPRTE,1,1,c,0*07
 $GPRMC,183731,A,3907.482,N,12102.436,W,000.0,360.0,080301,015.5,E*67
 $GPRMB,A,,,,,,,,,,,,V*71`;
+
+export const systemy_satelitarne: {skrot: string, pelna_nazwa: string}[] = [
+    {
+        skrot: "GP",
+        pelna_nazwa: "GPS"
+    },
+    {
+        skrot: "GL",
+        pelna_nazwa: "GLONGLASS"
+    },
+    {
+        skrot: "GB",
+        pelna_nazwa: "Beidou"
+    },
+    {
+        skrot: "GA",
+        pelna_nazwa: "Galileo"
+    },
+];
+
