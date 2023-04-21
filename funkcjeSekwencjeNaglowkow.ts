@@ -20,7 +20,10 @@ export const wynik: koncowy_wynik = {
         precyzja_ogolna: null,
         liczba_sledz_sat: null,
         numbery_satelitow: null,
-        status: null
+        status: null,
+        sciezka_poruszania_sie: null,
+        sciezka_poruszania_sie_magn: null,
+        predkosc_km: null
     },
     satelity: {
         czas_ust: null,
@@ -60,6 +63,18 @@ export const GGA = (linia_old: string) => {
         "numer ID stacji DGPS: " + numer_ID +'\n' +
         "suma: " + suma + '\n' 
     );
+
+    wynik.informacje_systemowe.czas = aktualnosc_danych;
+    wynik.informacje_systemowe.wysokosc_genoid = wysokosc_genoid;
+    wynik.informacje_systemowe.jakos = jakosc_pomiaru;
+    wynik.informacje_systemowe.suma = suma;
+
+    wynik.pozycja.szerokosc = latitude;
+    wynik.pozycja.dlugosc = longitude;
+    wynik.pozycja.npm = NPM;
+    wynik.pozycja.precyzja_hor = HDOP;
+    wynik.pozycja.liczba_sledz_sat = sledzone_satelity;
+
 };
 
 export const GSA = (linia_old: string) => {
@@ -82,6 +97,13 @@ export const GSA = (linia_old: string) => {
     console.log("HDOP: ", hdop);
     console.log("VDOP: ", vdop);
     console.log("Suma: ", suma);
+
+    wynik.informacje_systemowe.okreslenie_pozycji = tryb + " " + typ_ustawienia_pozycji;
+    wynik.informacje_systemowe.suma = suma;
+    wynik.pozycja.precyzja_hor =  hdop;
+    wynik.pozycja.precyzja_wert = vdop;
+    wynik.pozycja.precyzja_ogolna = dop;
+    wynik.pozycja.numbery_satelitow = numery_satelitow;
     
 };
 
@@ -123,6 +145,10 @@ export const GSV = (linia_old: string) => {
         }) +
         "\nsuma: " + suma + '\n' 
     );
+
+    wynik.informacje_systemowe.suma = suma;
+    wynik.satelity.widoczne_sat = liczba_widocznych_satelitow;
+    wynik.satelity.satelity = satelity;
 };
 
 export const RMC = (linia_old: string) => {
@@ -143,6 +169,17 @@ export const RMC = (linia_old: string) => {
     console.log("Data:", data);
     console.log("Odchylenie magnetyczne ziemi:", odchylenie, magnetic_direction);
     console.log("Suma: ", suma);
+
+    wynik.informacje_systemowe.data = data;
+    wynik.informacje_systemowe.czas = aktualnosc_danych;
+    wynik.informacje_systemowe.odchylenie_magnetyczne = odchylenie + magnetic_direction;
+    wynik.informacje_systemowe.suma = suma;
+
+    wynik.pozycja.szerokosc = latitude + ns;
+    wynik.pozycja.dlugosc = longitude + ew;
+    wynik.pozycja.predkosc = predkosc;
+    wynik.pozycja.kat_przemieszczania = kat;
+    wynik.pozycja.status = status;
 };
 
 export const GLL = (linia_old: string) => {
@@ -163,6 +200,12 @@ export const GLL = (linia_old: string) => {
     console.log("Czas: ", czas);
     console.log("Status: ", status);
     console.log("Suma: ", suma);
+
+    wynik.informacje_systemowe.suma = suma;
+    wynik.pozycja.szerokosc = latitude + latitude_hemisphere;
+    wynik.pozycja.dlugosc = longitude + longitude_hemisphere;
+    wynik.pozycja.status = status;
+    wynik.satelity.czas_ust = czas;
 };
 
 export const VTG = (linia_old: string) => {
@@ -180,4 +223,10 @@ export const VTG = (linia_old: string) => {
         "suma: " + suma + '\n' 
         
     );
+
+    wynik.informacje_systemowe.suma = suma;
+    wynik.pozycja.predkosc = linia_podzielona[5] + ", " + linia_podzielona[6];
+    wynik.pozycja.predkosc_km = linia_podzielona[7] + ", " + linia_podzielona[8];
+    wynik.pozycja.sciezka_poruszania_sie = linia_podzielona[1] + ", " + linia_podzielona[2] ;
+    wynik.pozycja.sciezka_poruszania_sie_magn = linia_podzielona[3] + ", " + linia_podzielona[4];
 };

@@ -1,5 +1,5 @@
 //npm run start
-import { zestaw1 as daneWejsciowe } from "./daneWejsciowe";
+import { zestaw3 as daneWejsciowe } from "./daneWejsciowe";
 import { wynik } from "./funkcjeSekwencjeNaglowkow";
 
 //funkcje

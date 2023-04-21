@@ -14,16 +14,19 @@ export interface koncowy_wynik {
         predkosc: string | null,
         kat_przemieszczania: string | null,
         npm: string | null,
-        precyzja_hor: string | null,
-        precyzja_wert: string | null,
-        precyzja_ogolna: string | null,
+        precyzja_hor: string | null | number,
+        precyzja_wert: string | null | number,
+        precyzja_ogolna: string | null | number,
         liczba_sledz_sat: string | null,
         numbery_satelitow: string[] | null,
-        status: string | null
+        status: string | null,
+        sciezka_poruszania_sie: number | null | string,
+        sciezka_poruszania_sie_magn: number | null | string,
+        predkosc_km: number | null | string,
     }
     satelity: {
         czas_ust: string | null,
-        widoczne_sat: string | null,
-        satelity: {id: string, wyniesienie: string, azymut: string, snr: string}[] | null,
+        widoczne_sat: string | null | number,
+        satelity: {identyfikator_PRN: number, wyniesienie_nad_poziom_równika: number, azymut: number, SNR: number}[] | null,
     }
 }
