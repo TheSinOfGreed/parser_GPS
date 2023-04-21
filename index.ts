@@ -1,5 +1,5 @@
 //npm run start
-import { daneWejsciowe2 as daneWejsciowe } from "./daneWejsciowe";
+import { zestaw2 as daneWejsciowe } from "./daneWejsciowe";
 
 //funkcje
 import { sprawdz_poprawnosc_lini } from "./funkcjeSprawdzajace";

@@ -87,11 +87,10 @@ export const GSV = (linia_old: string) => {
         "Aktualny numer lini: " + aktualny_numer_linii+ '\n' +
         "Widoczne satelity: " + liczba_widocznych_satelitow+ '\n' +
         "Satellity: \n"+
-        "[" + satelity[0].identyfikator_PRN + ", " + satelity[0].wyniesienie_nad_poziom_równika  + ", " + satelity[0].azymut + ", " + satelity[0].SNR + "] " + "\n" +
-        "[" + satelity[1].identyfikator_PRN + ", " + satelity[1].wyniesienie_nad_poziom_równika  + ", " + satelity[1].azymut + ", " + satelity[1].SNR + "] " +"\n" +
-        "[" + satelity[2].identyfikator_PRN + ", " + satelity[2].wyniesienie_nad_poziom_równika  + ", " + satelity[2].azymut + ", " + satelity[2].SNR + "] " +"\n" +
-        "[" + satelity[3].identyfikator_PRN + ", " + satelity[3].wyniesienie_nad_poziom_równika  + ", " + satelity[3].azymut + ", " + satelity[3].SNR + "] " +"\n" +
-        "suma: " + suma + '\n' 
+        satelity.map((item) => {
+            return " [" + item.identyfikator_PRN + ", " + item.wyniesienie_nad_poziom_równika + ", " + item.azymut + ", " + item.SNR + "]"
+        }) +
+        "\nsuma: " + suma + '\n' 
     );
 };
 
