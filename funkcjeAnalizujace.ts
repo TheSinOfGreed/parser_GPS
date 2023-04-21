@@ -5,6 +5,8 @@ import { systemy_satelitarne } from "./daneWejsciowe";
 import identyfikator_naglowka from "./Interface/indetyfikator_naglowka";
 import { identyfikatory_naglowka } from "./daneWejsciowe";
 
+import { GGA, GSA, GSV, RMC, GLL, VTG } from "./funkcjeSekwencjeNaglowkow";
+
 
 export const przeanalizuj_linie = (linia: string, index: number) => {
     const system: system_satelitarny | string = sprawdz_system_satelitarny(linia, index);
@@ -16,7 +18,28 @@ export const przeanalizuj_linie = (linia: string, index: number) => {
         if(typeof(identyfikator) === "string"){
             console.log("Nie rozpoznano identyfikatora o nazwie: " + identyfikator + " w systemie " + system);
         }else{
-            console.log(identyfikator.pelna_nazwa);
+            switch (identyfikator.skrot) {
+                case "GGA":
+                    GGA(linia);
+                    break;
+                case "GSA":
+                    GSA(linia);
+                    break;
+                case "GSV":
+                    GSV(linia);
+                  break;
+                case "RMC":
+                    RMC(linia);
+                    break;
+                case "GLL":
+                    GLL(linia);
+                    break;
+                case "VTG":
+                    VTG(linia);
+                    break;
+                default:
+                    console.log("Znany identyfikator, ale naglowek spoza zadanych.");
+              }
         }
     }
     console.log('\n');
