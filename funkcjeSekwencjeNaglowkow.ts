@@ -42,7 +42,7 @@ export const GGA = (linia_old: string) => {
     const latitude: string = linia_podzielona[2].substring(0, 2) + " deg " + linia_podzielona[2].substring(2, 8) + "' " +  linia_podzielona[3];
     const longitude: string = linia_podzielona[4].substring(0, 2) + " deg " + linia_podzielona[4].substring(2, 8) + "' " +  linia_podzielona[5];
     const jakosc_pomiaru: string = linia_podzielona[6];
-    const sledzone_satelity: string = linia_podzielona[7];
+    const sledzone_satelity: number = parseFloat(linia_podzielona[7]);
     const HDOP: string = linia_podzielona[8];
     const NPM: string = linia_podzielona[9] + ", " + linia_podzielona[10];
     const wysokosc_genoid: string = linia_podzielona[11] + ", " + linia_podzielona[12];
@@ -91,7 +91,7 @@ export const GSA = (linia_old: string) => {
     const vdop = parseFloat(linia_podzielona[17]);
 
     console.log("Nagłówek: ", naglowek);
-    console.log("Sposob okreslenia pozycji: ", tryb + " " + typ_ustawienia_pozycji);
+    console.log("Sposob okreslenia pozycji: ", tryb + " " + typ_ustawienia_pozycji + "D");
     console.log("Numery satelitów: ", numery_satelitow);
     console.log("DOP: ", dop);
     console.log("HDOP: ", hdop);
@@ -160,18 +160,18 @@ export const RMC = (linia_old: string) => {
     const [naglowek, aktualnosc_danych, status, latitude, ns, longitude, ew, predkosc, kat, data, odchylenie, magnetic_direction] = linia_podzielona;
 
     console.log("Nagłówek:", naglowek);
-    console.log("Aktualność danych:", aktualnosc_danych);
+    console.log("Aktualność danych:", aktualnosc_danych.substring(0,2) + ":" +aktualnosc_danych.substring(2,4) + ":"+aktualnosc_danych.substring(4,6) );
     console.log("Status:", status);
     console.log("Szerokość geograficzna:", latitude, ns);
     console.log("Długość geograficzna:", longitude, ew);
     console.log("Prędkość:", predkosc, "węzłów");
     console.log("Kąt śledzenia/poruszania się obiektu:", kat, "stopni");
-    console.log("Data:", data);
+    console.log("Data:", data.substring(0,2) + "." +data.substring(2,4) + "."+data.substring(4,6));
     console.log("Odchylenie magnetyczne ziemi:", odchylenie, magnetic_direction);
     console.log("Suma: ", suma);
 
-    wynik.informacje_systemowe.data = data;
-    wynik.informacje_systemowe.czas = aktualnosc_danych;
+    wynik.informacje_systemowe.data = data.substring(0,2) + "." +data.substring(2,4) + "."+data.substring(4,6);
+    wynik.informacje_systemowe.czas = aktualnosc_danych.substring(0,2) + ":" +aktualnosc_danych.substring(2,4) + ":"+aktualnosc_danych.substring(4,6);
     wynik.informacje_systemowe.odchylenie_magnetyczne = odchylenie + magnetic_direction;
     wynik.informacje_systemowe.suma = suma;
 
@@ -191,7 +191,7 @@ export const GLL = (linia_old: string) => {
     const latitude_hemisphere = linia_podzielona[2];
     const longitude = linia_podzielona[3];
     const longitude_hemisphere = linia_podzielona[4];
-    const czas = linia_podzielona[5];
+    const czas = linia_podzielona[5].substring(0,2) + "." + linia_podzielona[5].substring(2,4) + "." + linia_podzielona[5].substring(4,6);
     const status = linia_podzielona[6];
     
     console.log("Nagłówek: ", naglowek);

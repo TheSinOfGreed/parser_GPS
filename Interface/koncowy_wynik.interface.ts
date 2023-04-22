@@ -17,7 +17,7 @@ export interface koncowy_wynik {
         precyzja_hor: string | null | number,
         precyzja_wert: string | null | number,
         precyzja_ogolna: string | null | number,
-        liczba_sledz_sat: string | null,
+        liczba_sledz_sat: string | null | number,
         numbery_satelitow: string[] | null,
         status: string | null,
         sciezka_poruszania_sie: number | null | string,
