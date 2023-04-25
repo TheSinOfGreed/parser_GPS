@@ -26,6 +26,8 @@ export const wynik: koncowy_wynik = {
         predkosc_km: null
     },
     satelity: {
+        l_lini: null,
+        n_lini: 0,
         czas_ust: null,
         widoczne_sat: null,
         satelity:  null,
@@ -133,22 +135,27 @@ export const GSV = (linia_old: string) => {
         });
         }
     }
-
-    console.log(
-        "Identyfikator: " + iden + '\n' +
-        "Liczba lini: " + liczba_linii + '\n' +
-        "Aktualny numer lini: " + aktualny_numer_linii+ '\n' +
-        "Widoczne satelity: " + liczba_widocznych_satelitow+ '\n' +
-        "Satellity: \n"+
-        satelity.map((item) => {
-            return " [" + item.identyfikator_PRN + ", " + item.wyniesienie_nad_poziom_równika + ", " + item.azymut + ", " + item.SNR + "]"
-        }) +
-        "\nsuma: " + suma + '\n' 
-    );
-
-    wynik.informacje_systemowe.suma = suma;
-    wynik.satelity.widoczne_sat = liczba_widocznych_satelitow;
-    wynik.satelity.satelity = satelity;
+    if( aktualny_numer_linii === 1 || aktualny_numer_linii === wynik.satelity.n_lini + 1){
+        console.log(
+            "Identyfikator: " + iden + '\n' +
+            "Liczba lini: " + liczba_linii + '\n' +
+            "Aktualny numer lini: " + aktualny_numer_linii+ '\n' +
+            "Widoczne satelity: " + liczba_widocznych_satelitow+ '\n' +
+            "Satellity: \n"+
+            satelity.map((item) => {
+                return " [" + item.identyfikator_PRN + ", " + item.wyniesienie_nad_poziom_równika + ", " + item.azymut + ", " + item.SNR + "]"
+            }) +
+            "\nsuma: " + suma + '\n' 
+        );
+    
+        wynik.informacje_systemowe.suma = suma;
+        wynik.satelity.l_lini = liczba_linii;
+        wynik.satelity.n_lini = aktualny_numer_linii;
+        wynik.satelity.widoczne_sat = liczba_widocznych_satelitow;
+        wynik.satelity.satelity = satelity;
+    }else{
+        console.log("Jest to "+aktualny_numer_linii+" z "+liczba_linii+" lini opisujących satelity, brak poprzedniej nie czytamy");
+    }
 };
 
 export const RMC = (linia_old: string) => {
@@ -167,12 +174,12 @@ export const RMC = (linia_old: string) => {
     console.log("Prędkość:", predkosc, "węzłów");
     console.log("Kąt śledzenia/poruszania się obiektu:", kat, "stopni");
     console.log("Data:", data.substring(0,2) + "." +data.substring(2,4) + "."+data.substring(4,6));
-    console.log("Odchylenie magnetyczne ziemi:", odchylenie, magnetic_direction);
+    console.log("Odchylenie magnetyczne ziemi:", parseFloat(odchylenie), magnetic_direction);
     console.log("Suma: ", suma);
 
     wynik.informacje_systemowe.data = data.substring(0,2) + "." +data.substring(2,4) + "."+data.substring(4,6);
     wynik.informacje_systemowe.czas = aktualnosc_danych.substring(0,2) + ":" +aktualnosc_danych.substring(2,4) + ":"+aktualnosc_danych.substring(4,6);
-    wynik.informacje_systemowe.odchylenie_magnetyczne = odchylenie + magnetic_direction;
+    wynik.informacje_systemowe.odchylenie_magnetyczne = parseFloat(odchylenie) + magnetic_direction;
     wynik.informacje_systemowe.suma = suma;
 
     wynik.pozycja.szerokosc = latitude + ns;

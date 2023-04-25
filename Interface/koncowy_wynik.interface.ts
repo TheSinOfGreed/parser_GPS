@@ -25,6 +25,8 @@ export interface koncowy_wynik {
         predkosc_km: number | null | string,
     }
     satelity: {
+        l_lini: number | null,
+        n_lini: number,
         czas_ust: string | null,
         widoczne_sat: string | null | number,
         satelity: {identyfikator_PRN: number, wyniesienie_nad_poziom_równika: number, azymut: number, SNR: number}[] | null,
