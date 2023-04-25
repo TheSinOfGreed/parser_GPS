@@ -10,7 +10,7 @@ import { sprawdz_poprawnosc_lini } from "./funkcjeSprawdzajace";
 import { przeanalizuj_linie } from "./funkcjeAnalizujace";
 
 
-readFile('Dane/zestaw2.txt', 'utf8')
+readFile('Dane/zestaw1.txt', 'utf8')
 .then( daneWejsciowe =>{
     
     //zmienne
@@ -28,6 +28,7 @@ readFile('Dane/zestaw2.txt', 'utf8')
         dane.forEach((linia, index) => {
             przeanalizuj_linie(linia, index);
         });
+        //! WYPISANIE WYNIKU
         console.log(wynik);
         wynik.satelity.satelity?.forEach((staelita, index) => {
             console.log("Satelita " + (index+1) + ". [" + staelita.identyfikator_PRN + ", " + staelita.wyniesienie_nad_poziom_równika + ", "+ staelita.azymut + ", "+ staelita.SNR + "]");

@@ -27,7 +27,7 @@ export const przeanalizuj_linie = (linia: string, index: number) => {
                     break;
                 case "GSV":
                     GSV(linia);
-                  break;
+                    break;
                 case "RMC":
                     RMC(linia);
                     break;
@@ -61,4 +61,4 @@ export const sprawdz_naglowek = (linia: string, index: number): string | identyf
     }else{
         return identyfikator;
     }
-}
+};
