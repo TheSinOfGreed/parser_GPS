@@ -6,12 +6,15 @@ import identyfikator_naglowka from "./Interface/indetyfikator_naglowka";
 import { identyfikatory_naglowka } from "./daneWejsciowe";
 
 import { GGA, GSA, GSV, RMC, GLL, VTG } from "./funkcjeSekwencjeNaglowkow";
+import { czy_$, czy_80_znakow } from "./funkcjeSprawdzajace";
 
 
 export const przeanalizuj_linie = (linia: string, index: number) => {
     const system: system_satelitarny | string = sprawdz_system_satelitarny(linia, index);
-    if(typeof(system) === "string"){
-        console.log(index + ". Nie rozpoznano systemu satelitarnego o nazwie: " + system);
+    if(typeof(system) === "string" || !czy_$(linia, index) || !czy_80_znakow(linia, index)){
+        if(typeof(system) === "string" && czy_$(linia, index) && czy_80_znakow(linia, index)) console.log(index + ". Nie rozpoznano systemu satelitarnego o nazwie: " + system);
+        if(!czy_$(linia, index)) console.log(index + ". Niepoprawna linia.");
+        if(!czy_80_znakow(linia, index)) console.log(index + ". Wiecej niż 80 znaków w lini.");
     }else{
         console.log(index + ". System satelitarny: " + system.pelna_nazwa + "(" + system.skrot + ")");
         const identyfikator : string | identyfikator_naglowka =  sprawdz_naglowek(linia, index);
