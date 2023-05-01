@@ -10,7 +10,7 @@ import { przeanalizuj_linie } from "./funkcjeAnalizujace";
 import { czy_linia_poprawna } from './funkcjeSprawdzajace';
 
 
-readFile('Dane/zestaw2.txt', 'utf8')
+readFile('Dane/zestaw1.txt', 'utf8')
 .then( daneWejsciowe =>{
     
     //zmienne

@@ -1,5 +1,5 @@
 import system_satelitarny from "./Interface/system_satelitarny.interface";
-import identyfikator_naglowka from "./Interface/indetyfikator_naglowka";
+import identyfikator_naglowka from "./Interface/indetyfikator_naglowka.interface";
 
 export const systemy_satelitarne: system_satelitarny[] = [
     {

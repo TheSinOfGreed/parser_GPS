@@ -2,7 +2,7 @@
 import system_satelitarny from "./Interface/system_satelitarny.interface";
 import { systemy_satelitarne } from "./daneWejsciowe";
 
-import identyfikator_naglowka from "./Interface/indetyfikator_naglowka";
+import identyfikator_naglowka from "./Interface/indetyfikator_naglowka.interface";
 import { identyfikatory_naglowka } from "./daneWejsciowe";
 
 import { GGA, GSA, GSV, RMC, GLL, VTG } from "./funkcjeSekwencjeNaglowkow";

@@ -47,7 +47,7 @@ const sprawdz_sume_kontrolna = (sentence: string): string => {
   
     // Jeśli nie ma sumy kontrolnej w zdaniu, zwracamy obliczoną sumę kontrolną
     return checksum.toString(16);
-  }
+}
 
 
 
