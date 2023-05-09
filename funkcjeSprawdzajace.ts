@@ -23,6 +23,35 @@ const czy_80_znakow = (linia: string, index: number): boolean =>{
 
 //SPRAWDZANIE POPRAWNOSCI LINI //!PO ANALIZIE LINI
 
+export const czy_linia_poprawna2 = (linia: string, index: number, liczba_przecinkow: number[], suma: string): boolean => {
+    let czy_suma_ok: boolean = false;
+    // let czy_liczba_przecinkow_ok: boolean = false;
+
+    if(suma.toUpperCase() === "*"+sprawdz_sume_kontrolna(linia).toUpperCase()) czy_suma_ok = true;
+    else                                       console.log("Niepopoprawna suma kontrolna!" + suma + " " + sprawdz_sume_kontrolna(linia));
+
+    // liczba_przecinkow.forEach( nr_przecinka => {
+    //     if(nr_przecinka === sprawdz_przecinki(linia)) czy_liczba_przecinkow_ok = true;
+    // });
+
+    // if(!czy_liczba_przecinkow_ok){
+    //     console.log("Niepoprawna ilość przecinków");
+    //     return false
+    // }else if(czy_suma_ok && czy_liczba_przecinkow_ok){
+    //     return true;
+    // }else{
+    //     return false;
+    // }
+
+    return czy_suma_ok;
+     
+    
+}
+
+const sprawdz_przecinki = (sentence: string): number => {
+    return sentence.split('').filter(ch => ch === ',').join('').length;
+}
+
 const sprawdz_sume_kontrolna = (sentence: string): string => {
     let checksum = 0;
   

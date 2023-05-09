@@ -6,6 +6,7 @@ import identyfikator_naglowka from "./Interface/indetyfikator_naglowka.interface
 import { identyfikatory_naglowka } from "./daneWejsciowe";
 
 import { GGA, GSA, GSV, RMC, GLL, VTG } from "./funkcjeSekwencjeNaglowkow";
+import { czy_linia_poprawna2 } from "./funkcjeSprawdzajace";
 
 export const przeanalizuj_linie = (linia: string, index: number) => {
     const system: system_satelitarny | string = sprawdz_system_satelitarny(linia, index);
@@ -19,22 +20,22 @@ export const przeanalizuj_linie = (linia: string, index: number) => {
         }else{
             switch (identyfikator.skrot) {
                 case "GGA":
-                    GGA(linia);
+                    if(czy_linia_poprawna2(linia, index, [14], linia.substring(linia.indexOf('*')))) GGA(linia);
                     break;
                 case "GSA":
-                    GSA(linia);
+                    if(czy_linia_poprawna2(linia, index, [18, 14], linia.substring(linia.indexOf('*')))) GSA(linia);
                     break;
                 case "GSV":
-                    GSV(linia);
+                    if(czy_linia_poprawna2(linia, index, [19, 16, 10, 18, 12, 4], linia.substring(linia.indexOf('*')))) GSV(linia);
                     break;
                 case "RMC":
-                    RMC(linia);
+                    if(czy_linia_poprawna2(linia, index, [11], linia.substring(linia.indexOf('*')))) RMC(linia);
                     break;
                 case "GLL":
-                    GLL(linia);
+                    if(czy_linia_poprawna2(linia, index, [7], linia.substring(linia.indexOf('*')))) GLL(linia);
                     break;
                 case "VTG":
-                    VTG(linia);
+                    if(czy_linia_poprawna2(linia, index, [8], linia.substring(linia.indexOf('*')))) VTG(linia);
                     break;
                 default:
                     console.log("Znany identyfikator, ale naglowek spoza zadanych.");
